@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Android Architecture</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="rg">RG</string>
+    <string name="cpf">CPF</string>
+    <string name="email">Email</string>
+    <string name="create_user">Create User</string>
+    <string name="first_name_title">First name:</string>
+    <string name="last_name_title">Last Name:</string>
+    <string name="rg_title">RG:</string>
+    <string name="cpf_title">CPF:</string>
+    <string name="email_title">Email:</string>
+</resources>
