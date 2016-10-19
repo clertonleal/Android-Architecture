@@ -11,4 +11,5 @@
     <string name="rg_title">RG:</string>
     <string name="cpf_title">CPF:</string>
     <string name="email_title">Email:</string>
+    <string name="show_user">Show User</string>
 </resources>

@@ -13,7 +13,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
-        setTitle("Show user");
+        setTitle(R.string.show_user);
 
         User user = getIntent().getParcelableExtra(MainActivity.USER_KEY);
         bindView(user);
