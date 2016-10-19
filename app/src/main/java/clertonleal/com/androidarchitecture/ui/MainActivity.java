@@ -19,12 +19,13 @@ public class MainActivity extends AppCompatActivity {
     public static final int CREATE_USER = 1;
 
     private UsersAdapter usersAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_user);
+        recyclerView = (RecyclerView) findViewById(R.id.list_user);
         usersAdapter = new UsersAdapter();
         usersAdapter.setUserClickListener(getUserClickListener());
         recyclerView.setAdapter(usersAdapter);
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CREATE_USER && resultCode == RESULT_OK) {
             User user = data.getParcelableExtra(USER_KEY);
             usersAdapter.addUser(user);
+            recyclerView.setAdapter(usersAdapter);
         }
     }
 }
