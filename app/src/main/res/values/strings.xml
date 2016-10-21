@@ -12,4 +12,5 @@
     <string name="cpf_title">CPF:</string>
     <string name="email_title">Email:</string>
     <string name="show_user">Show User</string>
+    <string name="mandatory_field">Mandatory field</string>
 </resources>

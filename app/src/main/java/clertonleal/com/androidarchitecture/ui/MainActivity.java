@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         usersAdapter = new UsersAdapter();
         usersAdapter.setUserClickListener(getUserClickListener());
         recyclerView.setAdapter(usersAdapter);
-
     }
 
     @Override
