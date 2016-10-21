@@ -10,7 +10,7 @@ import android.widget.EditText;
 import clertonleal.com.androidarchitecture.R;
 import clertonleal.com.androidarchitecture.model.User;
 
-public class CreateUserActivity extends AppCompatActivity {
+public class CreateUserActivity extends AppCompatActivity implements CreateUserView {
 
     private EditText firstNameText;
     private EditText lastNameText;
@@ -18,10 +18,13 @@ public class CreateUserActivity extends AppCompatActivity {
     private EditText cpfText;
     private EditText emailText;
 
+    private CreateUserPresenter createUserPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
+        createUserPresenter = new CreateUserPresenter(this);
         setTitle(R.string.create_user);
         bindView();
     }
@@ -40,42 +43,72 @@ public class CreateUserActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isFormFilled()) {
-                    User user = new User();
-                    user.setFirstName(firstNameText.getText().toString());
-                    user.setLastName(lastNameText.getText().toString());
-                    user.setRg(rgText.getText().toString());
-                    user.setCpf(cpfText.getText().toString());
-                    user.setEmail(emailText.getText().toString());
-
-                    Intent intentResult = new Intent();
-                    intentResult.putExtra(MainActivity.USER_KEY, user);
-                    setResult(RESULT_OK, intentResult);
-                    finish();
-                }
+                createUserPresenter.validateAndCreateUser();
             }
         };
     }
 
-    private boolean isFormFilled() {
-        if (firstNameText.getText().toString().isEmpty()) {
-            firstNameText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (lastNameText.getText().toString().isEmpty()) {
-            lastNameText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (rgText.getText().toString().isEmpty()) {
-            rgText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (cpfText.getText().toString().isEmpty()) {
-            cpfText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (emailText.getText().toString().isEmpty()) {
-            emailText.setError(getString(R.string.mandatory_field));
-            return false;
-        }
+    @Override
+    public void createUser(User user) {
+        Intent intentResult = new Intent();
+        intentResult.putExtra(MainActivity.USER_KEY, user);
+        setResult(RESULT_OK, intentResult);
+        finish();
+    }
 
-        return true;
+    @NonNull
+    @Override
+    public String getEmail() {
+        return emailText.getText().toString();
+    }
+
+    @NonNull
+    @Override
+    public String getCpf() {
+        return cpfText.getText().toString();
+    }
+
+    @NonNull
+    @Override
+    public String getRg() {
+        return rgText.getText().toString();
+    }
+
+    @NonNull
+    @Override
+    public String getLastName() {
+        return lastNameText.getText().toString();
+    }
+
+    @NonNull
+    @Override
+    public String getFirstName() {
+        return firstNameText.getText().toString();
+    }
+
+    @Override
+    public void setEmailError() {
+        emailText.setError(getString(R.string.mandatory_field));
+    }
+
+    @Override
+    public void setCpfError() {
+        cpfText.setError(getString(R.string.mandatory_field));
+    }
+
+    @Override
+    public void setRgError() {
+        rgText.setError(getString(R.string.mandatory_field));
+    }
+
+    @Override
+    public void setLastNameError() {
+        lastNameText.setError(getString(R.string.mandatory_field));
+    }
+
+    @Override
+    public void setFirstNameError() {
+        firstNameText.setError(getString(R.string.mandatory_field));
     }
 
 }
