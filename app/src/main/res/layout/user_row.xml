@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/user_row_container"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/user_name"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="clertonleal.com.androidarchitecture.viewModel.UserRowViewModel"/>
+    </data>
+    <LinearLayout
+        android:id="@+id/user_row_container"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:layout_margin="10dp"
+        android:onClick="@{(view) -> viewModel.onUserClick(viewModel.user)}">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text='@{viewModel.user.firstName + " " + viewModel.user.lastName}'/>
+
+    </LinearLayout>
+</layout>

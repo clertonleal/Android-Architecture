@@ -1,81 +1,43 @@
 package clertonleal.com.androidarchitecture.ui;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 
 import clertonleal.com.androidarchitecture.R;
+import clertonleal.com.androidarchitecture.databinding.CreateUserBinding;
 import clertonleal.com.androidarchitecture.model.User;
+import clertonleal.com.androidarchitecture.ui.viewInterface.CreateUserView;
+import clertonleal.com.androidarchitecture.viewModel.UserCreateViewModel;
 
 public class CreateUserActivity extends AppCompatActivity {
-
-    private EditText firstNameText;
-    private EditText lastNameText;
-    private EditText rgText;
-    private EditText cpfText;
-    private EditText emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_user);
+        CreateUserBinding createUserBinding = DataBindingUtil.setContentView(this, R.layout.create_user);
+        createUserBinding.setViewModel(new UserCreateViewModel(getCreateUserView()));
         setTitle(R.string.create_user);
-        bindView();
-    }
-
-    private void bindView() {
-        firstNameText = (EditText) findViewById(R.id.first_name);
-        lastNameText = (EditText) findViewById(R.id.last_name);
-        rgText = (EditText) findViewById(R.id.rg);
-        cpfText = (EditText) findViewById(R.id.cpf);
-        emailText = (EditText) findViewById(R.id.email);
-        findViewById(R.id.create_button).setOnClickListener(getCreateUserListener());
     }
 
     @NonNull
-    private View.OnClickListener getCreateUserListener() {
-        return new View.OnClickListener() {
+    private CreateUserView getCreateUserView() {
+        return new CreateUserView() {
             @Override
-            public void onClick(View v) {
-                if (isFormFilled()) {
-                    User user = new User();
-                    user.setFirstName(firstNameText.getText().toString());
-                    user.setLastName(lastNameText.getText().toString());
-                    user.setRg(rgText.getText().toString());
-                    user.setCpf(cpfText.getText().toString());
-                    user.setEmail(emailText.getText().toString());
+            public void onUserCreated(User user) {
+                Intent intentResult = new Intent();
+                intentResult.putExtra(MainActivity.USER_KEY, user);
+                setResult(RESULT_OK, intentResult);
+                finish();
+            }
 
-                    Intent intentResult = new Intent();
-                    intentResult.putExtra(MainActivity.USER_KEY, user);
-                    setResult(RESULT_OK, intentResult);
-                    finish();
-                }
+            @Override
+            public String getString(@StringRes int resource) {
+                return CreateUserActivity.this.getString(resource);
             }
         };
     }
-
-    private boolean isFormFilled() {
-        if (firstNameText.getText().toString().isEmpty()) {
-            firstNameText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (lastNameText.getText().toString().isEmpty()) {
-            lastNameText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (rgText.getText().toString().isEmpty()) {
-            rgText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (cpfText.getText().toString().isEmpty()) {
-            cpfText.setError(getString(R.string.mandatory_field));
-            return false;
-        } else if (emailText.getText().toString().isEmpty()) {
-            emailText.setError(getString(R.string.mandatory_field));
-            return false;
-        }
-
-        return true;
-    }
-
 }

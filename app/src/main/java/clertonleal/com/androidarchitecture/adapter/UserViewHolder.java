@@ -1,21 +1,18 @@
 package clertonleal.com.androidarchitecture.adapter;
 
-
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import clertonleal.com.androidarchitecture.R;
+import clertonleal.com.androidarchitecture.databinding.UserRowBinding;
+import clertonleal.com.androidarchitecture.ui.viewInterface.ListUserView;
+import clertonleal.com.androidarchitecture.viewModel.UserRowViewModel;
 
 public class UserViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView title;
-    public LinearLayout container;
+    public UserRowBinding binding;
 
-    public UserViewHolder(View itemView) {
-        super(itemView);
-        title = (TextView) itemView.findViewById(R.id.user_name);
-        container = (LinearLayout) itemView.findViewById(R.id.user_row_container);
+    public UserViewHolder(UserRowBinding binding, ListUserView listUserView) {
+        super(binding.getRoot());
+        binding.setViewModel(new UserRowViewModel(listUserView));
+        this.binding = binding;
     }
 }

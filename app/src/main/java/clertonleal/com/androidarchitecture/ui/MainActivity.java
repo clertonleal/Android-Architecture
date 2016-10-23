@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import clertonleal.com.androidarchitecture.R;
 import clertonleal.com.androidarchitecture.adapter.UsersAdapter;
 import clertonleal.com.androidarchitecture.model.User;
+import clertonleal.com.androidarchitecture.ui.viewInterface.ListUserView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_user);
         usersAdapter = new UsersAdapter();
-        usersAdapter.setUserClickListener(getUserClickListener());
+        usersAdapter.setListUserView(getUserClickListener());
         recyclerView.setAdapter(usersAdapter);
     }
 
@@ -48,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private UsersAdapter.UserClickListener getUserClickListener() {
-        return new UsersAdapter.UserClickListener() {
+    private ListUserView getUserClickListener() {
+        return new ListUserView() {
             @Override
-            public void onClick(User user) {
+            public void onUserClick(User user) {
                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                 intent.putExtra(USER_KEY, user);
                 startActivity(intent);

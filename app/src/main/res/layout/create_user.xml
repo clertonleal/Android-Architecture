@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="clertonleal.com.androidarchitecture.viewModel.UserCreateViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:context="clertonleal.com.androidarchitecture.ui.CreateUserActivity">
+
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/first_name"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            app:fillError="@{viewModel.firstNameError}"
+            android:text="@={viewModel.user.firstName}"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last_name"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext"
+            app:fillError="@{viewModel.lastNameError}"
+            android:text="@={viewModel.user.lastName}"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/rg"
+            android:maxLines="1"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:layout_marginBottom="10dp"
+            app:fillError="@{viewModel.rgError}"
+            android:text="@={viewModel.user.rg}"/>
+
+        <EditText
+            android:id="@+id/cpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cpf"
+            android:maxLines="1"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            app:fillError="@{viewModel.cpfError}"
+            android:text="@={viewModel.user.cpf}"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionDone"
+            android:layout_marginBottom="10dp"
+            app:fillError="@{viewModel.emailError}"
+            android:text="@={viewModel.user.email}" />
+
+        <Button
+            android:id="@+id/create_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view) -> viewModel.userCreated(viewModel.user)}"
+            android:text="@string/create_user"/>
+    </LinearLayout>
+</layout>
