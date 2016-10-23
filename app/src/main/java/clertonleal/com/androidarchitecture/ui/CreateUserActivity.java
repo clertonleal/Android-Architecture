@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import clertonleal.com.androidarchitecture.R;
 import clertonleal.com.androidarchitecture.model.User;
+import clertonleal.com.androidarchitecture.presenter.CreateUserPresenter;
+import clertonleal.com.androidarchitecture.presenter.CreateUserView;
 
 public class CreateUserActivity extends AppCompatActivity implements CreateUserView {
 

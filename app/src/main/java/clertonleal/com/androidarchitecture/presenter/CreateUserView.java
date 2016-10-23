@@ -1,4 +1,4 @@
-package clertonleal.com.androidarchitecture.ui;
+package clertonleal.com.androidarchitecture.presenter;
 
 
 import clertonleal.com.androidarchitecture.model.User;
