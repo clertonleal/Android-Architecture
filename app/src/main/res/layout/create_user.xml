@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="clertonleal.com.androidarchitecture.viewModel.UserCreateViewModel"/>
+            type="clertonleal.com.androidarchitecture.viewModel.CreateUserViewModel"/>
     </data>
 
     <LinearLayout
@@ -80,7 +80,7 @@
             android:id="@+id/create_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{(view) -> viewModel.userCreated(viewModel.user)}"
+            android:onClick="@{(view) -> viewModel.onCreateUser(viewModel.user)}"
             android:text="@string/create_user"/>
     </LinearLayout>
 </layout>

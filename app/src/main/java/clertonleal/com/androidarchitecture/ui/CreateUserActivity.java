@@ -11,7 +11,7 @@ import clertonleal.com.androidarchitecture.R;
 import clertonleal.com.androidarchitecture.databinding.CreateUserBinding;
 import clertonleal.com.androidarchitecture.model.User;
 import clertonleal.com.androidarchitecture.ui.viewInterface.CreateUserView;
-import clertonleal.com.androidarchitecture.viewModel.UserCreateViewModel;
+import clertonleal.com.androidarchitecture.viewModel.CreateUserViewModel;
 
 public class CreateUserActivity extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class CreateUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CreateUserBinding createUserBinding = DataBindingUtil.setContentView(this, R.layout.create_user);
-        createUserBinding.setViewModel(new UserCreateViewModel(getCreateUserView()));
+        createUserBinding.setViewModel(new CreateUserViewModel(getCreateUserView()));
         setTitle(R.string.create_user);
     }
 

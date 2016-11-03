@@ -6,13 +6,21 @@ import android.os.Parcelable;
 
 public class User implements Parcelable {
 
+    public User(String firstName, String lastName, String rg, String cpf, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.email = email;
+    }
+
+    public User() {}
+
     private String firstName;
     private String lastName;
     private String rg;
     private String cpf;
     private String email;
-
-    public User() {}
 
     public String getFirstName() {
         return firstName;
@@ -86,5 +94,30 @@ public class User implements Parcelable {
         dest.writeString(rg);
         dest.writeString(cpf);
         dest.writeString(email);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (rg != null ? !rg.equals(user.rg) : user.rg != null) return false;
+        if (cpf != null ? !cpf.equals(user.cpf) : user.cpf != null) return false;
+        return email != null ? email.equals(user.email) : user.email == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (rg != null ? rg.hashCode() : 0);
+        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        return result;
     }
 }
