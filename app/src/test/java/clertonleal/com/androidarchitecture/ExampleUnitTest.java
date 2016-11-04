@@ -30,7 +30,7 @@ public class ExampleUnitTest {
     @Before
     public void setUp() {
         createUserView = mock(CreateUserView.class);
-        when(createUserView.getString(anyInt())).thenReturn(MANDATORY_FIELD);
+        when(createUserView.getString(eq(R.string.mandatory_field))).thenReturn(MANDATORY_FIELD);
         createViewModel = new CreateUserViewModel(createUserView);
     }
 
