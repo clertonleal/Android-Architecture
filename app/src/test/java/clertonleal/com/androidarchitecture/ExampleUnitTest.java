@@ -10,11 +10,6 @@ import clertonleal.com.androidarchitecture.viewModel.CreateUserViewModel;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 public class ExampleUnitTest {
 
     private static final String USER_FIRST_NAME = "Clerton";
@@ -30,7 +25,6 @@ public class ExampleUnitTest {
     @Before
     public void setUp() {
         createUserView = mock(CreateUserView.class);
-        when(createUserView.getString(eq(R.string.mandatory_field))).thenReturn(MANDATORY_FIELD);
         createViewModel = new CreateUserViewModel(createUserView);
     }
 
@@ -47,6 +41,6 @@ public class ExampleUnitTest {
         createViewModel.onCreateUser(user);
 
         verify(createUserView, never()).onUserCreated(any(User.class));
-        assertEquals(MANDATORY_FIELD, createViewModel.firstNameError.get());
+        verify(createUserView, times(1)).showError();
     }
 }

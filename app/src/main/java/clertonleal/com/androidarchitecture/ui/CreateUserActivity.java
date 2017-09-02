@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import clertonleal.com.androidarchitecture.R;
 import clertonleal.com.androidarchitecture.databinding.CreateUserBinding;
@@ -35,8 +36,8 @@ public class CreateUserActivity extends AppCompatActivity {
             }
 
             @Override
-            public String getString(@StringRes int resource) {
-                return CreateUserActivity.this.getString(resource);
+            public void showError() {
+                Toast.makeText(CreateUserActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         };
     }
